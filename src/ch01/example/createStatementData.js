@@ -5,26 +5,7 @@ class PerformanceCaculator {
     }
 
     get amount() {
-        let result = 0;
-        switch (this.play.type) {
-            case 'tragedy':
-                result = 40000;
-                if (this.performance.audience > 30) {
-                    result += 1000 * (this.performance.audience - 30);
-                }
-                break;
-            case 'comedy':
-                result = 30000;
-                if (this.performance.audience > 20) {
-                    result += 10000 + 500 * (this.performance.audience - 20);
-                }
-                result += 300 * this.performance.audience;
-                break;
-            default:
-                throw new Error(`알수없는 장르: ${this.performance.play.type}`);
-        }
-
-        return result;
+        throw new Error('서브 클래스를 정의해주세요.');
     }
 
     get volumeCredits() {
@@ -39,8 +20,40 @@ class PerformanceCaculator {
     }
 }
 
+class TragedyCaculator extends PerformanceCaculator {
+    get amount() {
+        let result = 40000;
+        if (this.performance.audience > 30) {
+            result += 1000 * (this.performance.audience - 30);
+        }
+
+        return result;
+    }
+}
+
+class ComedyCaculator extends PerformanceCaculator {
+    get amount() {
+        let result = 30000;
+
+        if (this.performance.audience > 20) {
+            result += 10000 + 500 * (this.performance.audience - 20);
+        }
+
+        result += 300 * this.performance.audience;
+
+        return result;
+    }
+}
+
 function createPerformanceCaculator(aPerformance, aPlay) {
-    return new PerformanceCaculator(aPerformance, aPlay);
+    switch (aPlay.type) {
+        case 'tragedy':
+            return new TragedyCaculator(aPerformance, aPlay);
+        case 'comedy':
+            return new ComedyCaculator(aPerformance, aPlay);
+        default:
+            throw new Error(`알수없는 장르: ${aPlay.type}`);
+    }
 }
 
 export function createStatementData(invoice, plays) {
