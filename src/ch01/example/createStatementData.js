@@ -1,3 +1,10 @@
+class PerformanceCaculator {
+    constructor(aPerformance, aPlay) {
+        this.performances = aPerformance;
+        this.play = aPlay;
+    }
+}
+
 export function createStatementData(invoice, plays) {
     const result = {};
     result.customer = invoice.customer;
@@ -7,6 +14,7 @@ export function createStatementData(invoice, plays) {
     return result;
 
     function enrichPerformance(aPerformane) {
+        const caculator = new PerformanceCaculator(aPerformane, playFor(aPerformane));
         const result = Object.assign({}, aPerformane);
         result.play = playFor(result);
         result.amount = amountFor(result);
