@@ -46,12 +46,13 @@ export function statement(invoice, plays) {
     let volumeCredits = 0;
     let result = `청구 내역 (고객명: ${invoice.customer})\n`;
 
+    for (let perf of invoice.performances) {
+        result += `${playFor(perf).name}: ${usd(amountFor(perf)/100)} (${perf.audience}석) \n`;
+        totalAmount += amountFor(perf);
+    }
     
     for (let perf of invoice.performances) {
         volumeCredits += volumeCreditsFor(perf);
-
-        result += `${playFor(perf).name}: ${usd(amountFor(perf)/100)} (${perf.audience}석) \n`;
-        totalAmount += amountFor(perf);
     }
 
     result += `총액: ${usd(totalAmount/100)}\n`;
