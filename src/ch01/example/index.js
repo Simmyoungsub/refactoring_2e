@@ -1,10 +1,14 @@
 export function statement(invoice, plays) {
+    return renderPlainText(createStatementData(invoice, plays));
+}
+
+function createStatementData(invoice, plays) {
     const statementData = {};
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enrichPerformance);
     statementData.totalAmount = totalAmount(statementData);
     statementData.totalVolumeCredits = totalVolumeCredits(statementData);
-    return renderPlainText(statementData);
+    return statementData;
 
     function enrichPerformance(aPerformane) {
         const result = Object.assign({}, aPerformane);
@@ -36,7 +40,7 @@ export function statement(invoice, plays) {
             default:
                 throw new Error(`알수없는 장르: ${aPerformance.play.type}`);
         }
-    
+
         return result;
     }
 
@@ -73,10 +77,10 @@ function renderPlainText(data) {
     let result = `청구 내역 (고객명: ${data.customer})\n`;
 
     for (let perf of data.performances) {
-        result += `${perf.play.name}: ${usd(perf.amount/100)} (${perf.audience}석) \n`;
+        result += `${perf.play.name}: ${usd(perf.amount / 100)} (${perf.audience}석) \n`;
     }
-    
-    result += `총액: ${usd(data.totalAmount/100)}\n`;
+
+    result += `총액: ${usd(data.totalAmount / 100)}\n`;
     result += `적립 포인트: ${data.totalVolumeCredits}점 \n`;
     return result;
 
