@@ -14,6 +14,7 @@ function createStatementData(invoice, plays) {
         const result = Object.assign({}, aPerformane);
         result.play = playFor(result);
         result.amount = amountFor(result);
+        result.volumeCredits = volumeCreditsFor(result);
         return result;
     }
 
@@ -45,21 +46,11 @@ function createStatementData(invoice, plays) {
     }
 
     function totalAmount(data) {
-        let result = 0;
-        for (let perf of data.performances) {
-            result += perf.amount;
-        }
-        return result;
+        return data.performances.reduce((total, p) => (total + p.amount), 0)
     }
 
     function totalVolumeCredits(data) {
-        let result = 0;
-
-        for (let perf of data.performances) {
-            result += volumeCreditsFor(perf);
-        }
-
-        return result;
+        return data.performances.reduce((total, p) => (total + p.volumeCredits), 0)
     }
 
     function volumeCreditsFor(perf) {
