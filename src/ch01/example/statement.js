@@ -1,9 +1,10 @@
+import {createStatementData} from './createStatementData';
 
-export function statement(invoice, plays) {
-    return renderPlainText(createStatementData(invoice, plays));
+export function htmlStatement(invoice, plays) {
+    return renderHtml(createStatementData(invoice, plays));
 }
 
-function renderPlainText(data) {
+function renderHtml(data) {
     let result = `청구 내역 (고객명: ${data.customer})\n`;
 
     for (let perf of data.performances) {
