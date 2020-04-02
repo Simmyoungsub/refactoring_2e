@@ -1,7 +1,7 @@
-function statement(invoice, plays) {
+export function statement(invoice, plays) {
     let totalAmount = 0;
     let volumeCredits = 0;
-    let result = `청구 내역 (고객명: ${invoice, customer})\n`;
+    let result = `청구 내역 (고객명: ${invoice.customer})\n`;
     const format = new Intl.NumberFormat('en-US', {
         style: 'currency', currency: 'USD', minimumFractionDigits: 2
     }).format;
@@ -14,7 +14,7 @@ function statement(invoice, plays) {
 
         if ('comedy' === play.type) volumeCredits += Math.floor(perf.audience / 5);
 
-        result += `${play.name}: ${format(thisAmount/100)} (${perf.audience}석)`;
+        result += `${play.name}: ${format(thisAmount/100)} (${perf.audience}석) \n`;
         totalAmount += thisAmount;
     }
 
@@ -45,3 +45,4 @@ function amountFor(perf, play) {
 
     return thisAmount;
 }
+
