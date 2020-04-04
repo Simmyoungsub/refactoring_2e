@@ -32,7 +32,7 @@ export class Province {
     }
 
     get demandValue() {
-        return this.satisfiedDemand + this.price;
+        return this.satisfiedDemand * this.price;
     }
 
     get satisfiedDemand() {
