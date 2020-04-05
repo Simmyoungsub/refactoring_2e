@@ -9,4 +9,4 @@ export class NumberRange {
 
     get min() {return this._data.min;}
     get max() {return this._data.max;}
-}
+};

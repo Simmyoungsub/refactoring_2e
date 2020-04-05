@@ -3,7 +3,7 @@ import {expect} from 'chai';
 
 describe('readings', function() {
     let station = null;
-    let operatingPlan = null;
+    let temperatureRange = null;
 
     beforeEach(function() {
         station = {
@@ -17,7 +17,7 @@ describe('readings', function() {
             ]
         };
 
-        operatingPlan = {
+        temperatureRange = {
             temperatureFloor: 50, // 최저 온도
             temperatureCeil: 52, // 최고 온도
         };
@@ -25,7 +25,7 @@ describe('readings', function() {
     });
 
     it ('readingsOutsideRange', function() {
-        const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temperatureCeil);
+        const range = new NumberRange(temperatureRange.temperatureFloor, temperatureRange.temperatureCeil);
         const alerts = readingsOutsideRange(station, range);
         expect(alerts.length).eq(4);
     });
