@@ -1,4 +1,4 @@
-import {readingsOutsideRange, NumberRange} from './reading';
+import {readingsOutsideRange, NumberRange} from './temperature';
 import {expect} from 'chai';
 
 describe('readings', function() {

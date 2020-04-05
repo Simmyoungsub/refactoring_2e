@@ -1,5 +1,5 @@
 import {getDefaultOwner, setDefaultOwner} from './defaultOwner';
-import {readingsOutsideRange, NumberRange} from './reading';
+import {readingsOutsideRange, NumberRange} from './temperature';
 
 const specialship = {};
 specialship.owner = getDefaultOwner();
