@@ -1,7 +1,7 @@
 let defaultOwner = {firstName: 'sim', lastName: 'myoungsub'};
 
 export function getDefaultOwner() {
-    return defaultOwner;
+    return {...defaultOwner};
 };
 
 export function setDefaultOwner(arg) {
