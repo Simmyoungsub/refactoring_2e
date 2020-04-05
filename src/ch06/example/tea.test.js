@@ -12,8 +12,7 @@ describe('tea', function () {
     it('client2', function () {
         const rawReading = acquireReading();
         const aReading = new Reading(rawReading);
-        const base = aReading.baseCharge;
-        const taxableCharge = Math.max(0, base - taxThreshold(aReading.year));
+        const taxableCharge = aReading.taxableCharge;
         expect(taxableCharge).equal(0);
     });
 
