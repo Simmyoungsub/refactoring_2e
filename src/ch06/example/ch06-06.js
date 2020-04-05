@@ -1,13 +1,6 @@
-let defaultOwner = {firstName: 'sim', lastName: 'myoungsub'};
+import {getDefaultOwner, setDefaultOwner} from './defaultOwner';
+
 const specialship = {};
-specialship.owner = defaultOwner;
+specialship.owner = getDefaultOwner();
 
-defaultOwner = {firstName: '레베카', lastName: '파슨 스'};
-
-function getDefaultOwner() {
-    return defaultOwner;
-};
-
-function setDefaultOwner(arg) {
-    defaultOwner = arg;
-};
+setDefaultOwner({firstName: '레베카', lastName: '파슨 스'});

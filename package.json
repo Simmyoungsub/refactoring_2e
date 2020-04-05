@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node",
-    "test": "./node_modules/.bin/mocha -w -r @babel/register ./src/**/*.test.js"
+    "test": "./node_modules/.bin/mocha -r @babel/register ./src/**/*.test.js"
   },
   "author": "",
   "license": "ISC",
