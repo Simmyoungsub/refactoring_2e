@@ -1,24 +1,26 @@
-import {expect} from 'chai';
-import {acquireReading, baseRate, taxThreshold, Reading} from './tea';
+import { expect } from 'chai';
+import { acquireReading, taxThreshold, Reading } from './tea';
 
-describe('tea', function() {
-    it ('client1', function() {
-        const aReading = acquireReading();
-        const baseCharge = baseRate(aReading.month, aReading.year) * aReading.quantity;
+describe('tea', function () {
+    it('client1', function () {
+        const rawReading = acquireReading();
+        const aReading = new Reading(rawReading);
+        const baseCharge = aReading.baseCharge;
         expect(baseCharge).equal(10);
     });
 
-    it ('client2', function() {
-        const aReading = acquireReading();
-        const base = baseRate(aReading.month, aReading.year) * aReading.quantity;
+    it('client2', function () {
+        const rawReading = acquireReading();
+        const aReading = new Reading(rawReading);
+        const base = aReading.baseCharge;
         const taxableCharge = Math.max(0, base - taxThreshold(aReading.year));
         expect(taxableCharge).equal(0);
     });
 
-    it ('client3', function() {
+    it('client3', function () {
         const rawReading = acquireReading();
         const aReading = new Reading(rawReading);
-        const basicChargeAmount = aReading.calculateBaseCharge;
+        const basicChargeAmount = aReading.baseCharge;
 
         expect(basicChargeAmount).equal(10);
     });

@@ -5,13 +5,14 @@ const reading = {
     year: 2017
 };
 
+function baseRate(month, year) {
+    return 1;
+};
+
 export function acquireReading() {
     return reading;
 };
 
-export function baseRate(month, year) {
-    return 1;
-};
 
 export function taxThreshold(year) {
     return 10;
@@ -31,7 +32,7 @@ export class Reading {
     get month() {return this._month;}
     get year() {return this._year;}
 
-    get calculateBaseCharge() {
+    get baseCharge() {
         return baseRate(this.month, this.year) * this.quantity;
     }
 }
